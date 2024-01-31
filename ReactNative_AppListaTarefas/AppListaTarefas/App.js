@@ -1,11 +1,20 @@
 
 import { StyleSheet, Text, View, ImageBackground } from 'react-native';
+import {AppLoading} from 'expo';
 import { AntDesign } from '@expo/vector-icons';
+import { useFonts, Lato_400Regular } from '@expo-google-fonts/lato';
 
 export default function App() {
 
   const image = require('./resources/img/bg.jpg')
 
+  let [fontsLoaded] = useFonts({
+    Lato_400Regular,
+  });
+
+  if(!fontsLoaded){
+    return <AppLoading/>;
+  }
   return (
     <View style={styles.container}>
       <ImageBackground source={image} style={styles.img}>
@@ -38,6 +47,7 @@ const styles = StyleSheet.create({
     textAlign:'center',
     color:'#FFF',
     fontSize:20,
-    marginTop:20
+    marginTop:40,
+    fontFamily:'Lato_400Regular'
   }
 });
