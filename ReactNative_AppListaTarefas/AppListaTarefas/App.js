@@ -2,7 +2,7 @@ import React from 'react';
 import * as SplashScreen from 'expo-splash-screen'
 import { AntDesign } from '@expo/vector-icons';
 import { useFonts, Lato_400Regular } from '@expo-google-fonts/lato';
-import { StyleSheet, Text, View, ImageBackground, TouchableOpacity, StatusBar} from 'react-native';
+import { StyleSheet, Text, View, ImageBackground, TouchableOpacity, StatusBar, ScrollView} from 'react-native';
 
 SplashScreen.preventAutoHideAsync();
 
@@ -16,7 +16,7 @@ export default function App() {
 
   return (
 
-    <View style={styles.container}>
+    <ScrollView style={styles.container}>
       <StatusBar hidden/>
       <ImageBackground source={image} style={styles.img}>
         <View style={styles.coverView}>
@@ -34,8 +34,9 @@ export default function App() {
           </TouchableOpacity>
         </View>
       </View>
+     
 
-    </View>
+    </ScrollView>
   );
 }
 
