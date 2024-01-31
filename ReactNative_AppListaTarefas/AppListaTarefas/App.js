@@ -1,8 +1,10 @@
-
-import { StyleSheet, Text, View, ImageBackground } from 'react-native';
-import {AppLoading} from 'expo';
+import React from 'react';
+import * as SplashScreen from 'expo-splash-screen'
 import { AntDesign } from '@expo/vector-icons';
 import { useFonts, Lato_400Regular } from '@expo-google-fonts/lato';
+import { StyleSheet, Text, View, ImageBackground, TouchableOpacity, StatusBar} from 'react-native';
+
+SplashScreen.preventAutoHideAsync();
 
 export default function App() {
 
@@ -12,19 +14,27 @@ export default function App() {
     Lato_400Regular,
   });
 
-  if(!fontsLoaded){
-    return <AppLoading/>;
-  }
   return (
+
     <View style={styles.container}>
+      <StatusBar hidden/>
       <ImageBackground source={image} style={styles.img}>
         <View style={styles.coverView}>
           <Text style={styles.textHeader}>Lista de Tarefas - Danki Code</Text>
         </View>
       </ImageBackground>
-      <View>
-      <AntDesign name="minuscircleo" size={24} color="black" />
+
+      <View style={styles.tarefaSingle}>
+        <View style={{flex:1, width:'100%', padding:10}}>
+          <Text>Minha Tarefa número 1.</Text>
+        </View>
+        <View style={{alignItems:'flex-end',flex:1, padding:10}}>
+          <TouchableOpacity>
+            <AntDesign name="minuscircleo" size={24} color="black" />
+          </TouchableOpacity>
+        </View>
       </View>
+
     </View>
   );
 }
@@ -44,10 +54,18 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(0,0,0,0.6)'
   },
   textHeader: {
-    textAlign:'center',
-    color:'#FFF',
-    fontSize:20,
-    marginTop:40,
-    fontFamily:'Lato_400Regular'
+    textAlign: 'center',
+    color: '#FFF',
+    fontSize: 20,
+    marginTop: 30,
+    fontFamily: 'Lato_400Regular'
+  },
+  tarefaSingle: {
+    marginTop: 30,
+    width: '100%',
+    borderBottomWidth: 1,
+    borderBottomColor: 'black',
+    flexDirection: 'row',
+    paddingBottom: 10
   }
 });
