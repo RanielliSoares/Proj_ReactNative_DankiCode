@@ -1,5 +1,6 @@
-import { StatusBar } from 'expo-status-bar';
+
 import { StyleSheet, Text, View, ImageBackground } from 'react-native';
+import { AntDesign } from '@expo/vector-icons';
 
 export default function App() {
 
@@ -7,13 +8,14 @@ export default function App() {
 
   return (
     <View style={styles.container}>
-
       <ImageBackground source={image} style={styles.img}>
         <View style={styles.coverView}>
           <Text style={styles.textHeader}>Lista de Tarefas - Danki Code</Text>
         </View>
       </ImageBackground>
-
+      <View>
+      <AntDesign name="minuscircleo" size={24} color="black" />
+      </View>
     </View>
   );
 }
