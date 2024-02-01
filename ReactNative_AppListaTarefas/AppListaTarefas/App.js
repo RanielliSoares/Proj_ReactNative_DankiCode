@@ -1,40 +1,69 @@
-import React from 'react';
-import * as SplashScreen from 'expo-splash-screen'
+import React, { useState } from 'react';
 import { AntDesign } from '@expo/vector-icons';
-import { useFonts, Lato_400Regular } from '@expo-google-fonts/lato';
-import { StyleSheet, Text, View, ImageBackground, TouchableOpacity, StatusBar, ScrollView} from 'react-native';
 
-SplashScreen.preventAutoHideAsync();
+import { StyleSheet, Text, View, ImageBackground, TouchableOpacity, StatusBar, ScrollView } from 'react-native';
 
 export default function App() {
 
   const image = require('./resources/img/bg.jpg')
+  const [tarefas, setTarefas] = useState([
+    {
+      id: 1,
+      tarefa: 'Estudar JS'
+    },
+    {
+      id: 2,
+      tarefa: 'Estudar ReactNative'
+    },
+    {
+      id: 3,
+      tarefa: 'Criar App Orçamentos'
+    },
+    {
+      id: 4,
+      tarefa: 'Lavar a roupa'
+    },
+    {
+      id: 5,
+      tarefa: 'Fazer a janta'
+    },
+    {
+      id: 6,
+      tarefa: 'Dormir'
+    },
+  ])
 
-  let [fontsLoaded] = useFonts({
-    Lato_400Regular,
-  });
+  function deletarTarefa(id){
+    alert('Tarefa com ID '+id+' foi deletada')
+  }
 
   return (
 
     <ScrollView style={styles.container}>
-      <StatusBar hidden/>
+      <StatusBar hidden />
       <ImageBackground source={image} style={styles.img}>
         <View style={styles.coverView}>
           <Text style={styles.textHeader}>Lista de Tarefas - Danki Code</Text>
         </View>
       </ImageBackground>
 
-      <View style={styles.tarefaSingle}>
-        <View style={{flex:1, width:'100%', padding:10}}>
-          <Text>Minha Tarefa número 1.</Text>
-        </View>
-        <View style={{alignItems:'flex-end',flex:1, padding:10}}>
-          <TouchableOpacity>
-            <AntDesign name="minuscircleo" size={24} color="black" />
-          </TouchableOpacity>
-        </View>
-      </View>
-     
+      {
+        tarefas.map((val) => {
+          return (
+            <View style={styles.tarefaSingle}>
+              <View style={{ flex: 1, width: '100%', padding: 10 }}>
+                <Text>{val.tarefa}</Text>
+              </View>
+              <View style={{ alignItems: 'flex-end', flex: 1, padding: 10 }}>
+                <TouchableOpacity onPress={()=>{deletarTarefa(val.id)}}>
+                  <AntDesign name="minuscircleo" size={24} color="black" />
+                </TouchableOpacity>
+              </View>
+            </View>
+            )
+        })
+
+      }
 
     </ScrollView>
   );
@@ -59,7 +88,6 @@ const styles = StyleSheet.create({
     color: '#FFF',
     fontSize: 20,
     marginTop: 30,
-    fontFamily: 'Lato_400Regular'
   },
   tarefaSingle: {
     marginTop: 30,
