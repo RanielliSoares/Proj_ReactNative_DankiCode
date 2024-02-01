@@ -34,7 +34,7 @@ export default function App() {
   ])
 
   function deletarTarefa(id){
-    alert('Tarefa com ID '+id+' foi deletada')
+    alert('Tarefa com ID '+id+' foi deletad')
   }
 
   return (
