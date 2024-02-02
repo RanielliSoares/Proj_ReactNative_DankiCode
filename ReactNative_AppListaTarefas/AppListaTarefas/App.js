@@ -31,41 +31,55 @@ export default function App() {
       id: 6,
       tarefa: 'Dormir'
     },
+    {
+      id: 7,
+      tarefa: 'Estudar a música'
+    },
+    {
+      id: 8,
+      tarefa: 'Dar aulas de música'
+    },
   ])
 
-  function deletarTarefa(id){
-    alert('Tarefa com ID '+id+' foi deletad')
+  function deletarTarefa(id) {
+    alert('Tarefa com ID ' + id + ' foi deletad')
+    let newTarefa = tarefas.filter((val)=>{
+      return val.id != id;
+    })
+    setTarefas(newTarefa)
   }
 
   return (
 
-    <ScrollView style={styles.container}>
+    <View style={styles.container}>
       <StatusBar hidden />
       <ImageBackground source={image} style={styles.img}>
         <View style={styles.coverView}>
           <Text style={styles.textHeader}>Lista de Tarefas - Danki Code</Text>
         </View>
       </ImageBackground>
+      <ScrollView>
+        {
+          tarefas.map((val) => {
+            return (
+              <View style={styles.tarefaSingle}>
+                <View style={{ flex: 1, width: '100%', padding: 10 }}>
+                  <Text>{val.tarefa}</Text>
+                </View>
+                <View style={{ alignItems: 'flex-end', flex: 1, padding: 10 }}>
+                  <TouchableOpacity onPress={() => { deletarTarefa(val.id) }}>
+                    <AntDesign name="minuscircleo" size={24} color="black" />
+                  </TouchableOpacity>
+                </View>
 
-      {
-        tarefas.map((val) => {
-          return (
-            <View style={styles.tarefaSingle}>
-              <View style={{ flex: 1, width: '100%', padding: 10 }}>
-                <Text>{val.tarefa}</Text>
               </View>
-              <View style={{ alignItems: 'flex-end', flex: 1, padding: 10 }}>
-                <TouchableOpacity onPress={()=>{deletarTarefa(val.id)}}>
-                  <AntDesign name="minuscircleo" size={24} color="black" />
-                </TouchableOpacity>
-              </View>
-            </View>
             )
-        })
+          })
 
-      }
+        }
+      </ScrollView>
 
-    </ScrollView>
+    </View>
   );
 }
 
